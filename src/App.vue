@@ -23,6 +23,7 @@
         {{ temperature }}° C
         <br>
         <div class="descript">{{ description }}</div>
+        <h5>{{ location }}</h5>
       </div>
     </div>
   </div>
@@ -45,6 +46,7 @@ export default defineComponent({
     const icon = ref("");
     const iconURL = ref("");
     const description= ref("")
+    const location= ref("")
 
     const check = async () => {
       isAvailable.value = true;
@@ -67,7 +69,7 @@ export default defineComponent({
       temperature.value = Math.floor(weatherData.value.main.temp - 273);
       icon.value = weatherData.value.weather[0].icon;
       description.value = weatherData.value.weather[0].main;
-      weatherData.value.visibility
+      location.value= weatherData.value.name //"Dhaka" name
 
       iconURL.value = "http://openweathermap.org/img/w/" + icon.value + ".png";
     };
@@ -79,17 +81,25 @@ export default defineComponent({
       city,
       icon,
       iconURL,
-      description
+      description,
+      location
     };
   },
 });
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan&display=swap');
 body {
-  background-color: #3ab0ff;
+  background-color: #006494;
+  font-family: 'League Spartan', sans-serif;
 }
 .container1 {
+  background: #f1f7fe;
+  overflow: hidden;
+  border-radius: 16px;
+  color: #010101;
+
   position: absolute;
   width: 20%;
   height: 40%;
@@ -98,14 +108,16 @@ body {
   top: 40%;
   left: 20%;
   /* transform: translate(-50%, -50%); */
-  border-radius: 6px;
   flex-direction: column;
   overflow-y: auto;
   /* Your container styles */
-  background-color: #f4f4f2;
-  color: #27374d;
 }
 .container2 {
+  background: #f1f7fe;
+  overflow: hidden;
+  border-radius: 16px;
+  color: #010101;
+
   position: absolute;
   width: 20%;
   height: 60%;
@@ -114,12 +126,12 @@ body {
   top: 20%;
   left: 50%;
   /* transform: translate(-50%, -50%); */
-  border-radius: 6px;
+
   flex-direction: column;
   overflow-y: auto;
   /* Your container styles */
-  background-color: #f4f4f2;
-  color: #27374d;
+
+ 
 }
 .degree {
   font-family: Verdana;
